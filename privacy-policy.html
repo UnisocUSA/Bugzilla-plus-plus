@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Privacy Policy – BugZilla++</title>
+  <style>
+    :root { --accent: #0066cc; --border: #d0d7de; --muted: #586069; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: #1a1a2e;
+      line-height: 1.7;
+      background: #f6f8fa;
+    }
+    .container { max-width: 740px; margin: 0 auto; padding: 40px 24px 60px; }
+    a { color: var(--accent); }
+    h1 { font-size: 2rem; font-weight: 800; margin-bottom: 6px; }
+    .meta { font-size: .85rem; color: var(--muted); margin-bottom: 32px; }
+    h2 { font-size: 1.15rem; font-weight: 700; margin: 32px 0 10px; }
+    p, li { font-size: .95rem; color: #333; }
+    ul { padding-left: 20px; margin-top: 6px; }
+    li { margin-bottom: 6px; }
+    table { width: 100%; border-collapse: collapse; font-size: .88rem; margin-top: 8px; }
+    thead tr { background: #eef1f5; }
+    th, td { text-align: left; padding: 8px 12px; border: 1px solid var(--border); }
+    code { background: #eef1f5; padding: 1px 5px; border-radius: 3px; font-size: .88em; }
+    footer {
+      margin-top: 48px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      font-size: .82rem;
+      color: var(--muted);
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <h1>Privacy Policy</h1>
+  <p class="meta">BugZilla++ Chrome Extension &nbsp;·&nbsp; Effective date: February 18, 2026 &nbsp;·&nbsp; Last updated: February 18, 2026</p>
+
+  <h2>1. Introduction</h2>
+  <p>
+    This Privacy Policy describes how the BugZilla++ Chrome browser extension ("the Extension", "we", "our")
+    handles information when you use it. We are committed to protecting your privacy. This policy complies with
+    the Chrome Web Store Developer Program Policies and applicable privacy laws including GDPR and CCPA.
+  </p>
+  <p style="margin-top:10px;">
+    <strong>Summary:</strong> BugZilla++ does not collect, transmit, sell, or share any personal data.
+    All processing happens locally in your browser.
+  </p>
+
+  <h2>2. Information We Do Not Collect</h2>
+  <p>The Extension does <strong>not</strong> collect, record, store on our servers, or transmit to any
+  third party any of the following:</p>
+  <ul>
+    <li>Personal identifiable information (name, email address, IP address, etc.).</li>
+    <li>Browsing history, bug IDs, comment content, or attachment data.</li>
+    <li>Usage statistics, analytics, or crash reports.</li>
+    <li>Cookies or tracking data of any kind.</li>
+  </ul>
+  <p style="margin-top:10px;">
+    We do not operate any servers, databases, or analytics pipelines associated with this Extension.
+  </p>
+
+  <h2>3. Information Stored Locally on Your Device</h2>
+  <p>
+    The Extension uses the Chrome <code>storage.sync</code> API solely to persist your personal
+    preferences across browser sessions. This data never leaves your Google Account's sync storage
+    and is never accessed by us. The data stored includes:
+  </p>
+  <ul>
+    <li>Dark-mode preference (enabled/disabled).</li>
+    <li>Per-username colour mappings you configure in the Options panel.</li>
+    <li>UI section collapsed/expanded states.</li>
+  </ul>
+  <p style="margin-top:10px;">
+    You can clear this data at any time by removing the Extension or clearing Chrome's extension
+    storage via <em>chrome://settings/clearBrowserData</em>.
+  </p>
+
+  <h2>4. Network Requests</h2>
+  <p>
+    When you open an attachment preview, the Extension fetches that attachment directly from the
+    Bugzilla instance you are already authenticated with — using your existing browser session,
+    exactly as clicking the link yourself would. <strong>No attachment data is forwarded to any
+    external server.</strong>
+  </p>
+  <p style="margin-top:10px;">
+    The Extension does not contact any domain other than the Bugzilla host currently open in your
+    browser. All third-party library code (PDF.js, SheetJS, JSZip) is bundled inside the Extension
+    package; no requests are made to CDNs or external servers.
+  </p>
+
+  <h2>5. Permissions Explained</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Permission</th>
+        <th>Why it is needed</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>storage</code></td>
+        <td>Save your theme and colour preferences across browser sessions using Chrome Sync.</td>
+      </tr>
+      <tr>
+        <td><code>activeTab</code></td>
+        <td>Read the URL of the currently active tab to determine whether it is a Bugzilla page.</td>
+      </tr>
+      <tr>
+        <td><code>scripting</code></td>
+        <td>Inject the UI enhancement scripts and stylesheet into Bugzilla pages.</td>
+      </tr>
+      <tr>
+        <td><code>host_permissions: *://*/*</code></td>
+        <td>
+          Bugzilla is self-hosted software with no fixed domain. The wide host permission lets the
+          Extension work on any Bugzilla installation. It is used only to inject content scripts
+          and proxy attachment fetches back to the same origin — never to access unrelated sites.
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>6. Use of Third-Party Libraries</h2>
+  <p>The Extension bundles the following open-source libraries locally (no CDN or external requests are made):</p>
+  <ul>
+    <li>
+      <a href="https://mozilla.github.io/pdf.js/" target="_blank" rel="noopener">PDF.js</a>
+      (Mozilla Foundation, Apache 2.0 licence) — in-browser PDF rendering.
+    </li>
+    <li>
+      <a href="https://sheetjs.com/" target="_blank" rel="noopener">SheetJS (xlsx)</a>
+      (Apache 2.0 licence) — spreadsheet preview (XLS/XLSX).
+    </li>
+    <li>
+      <a href="https://stuk.github.io/jszip/" target="_blank" rel="noopener">JSZip</a>
+      (MIT licence) — ZIP file browsing and in-browser extraction.
+    </li>
+  </ul>
+  <p style="margin-top:10px;">None of these libraries make independent network requests or collect user data.</p>
+
+  <h2>7. Data Security</h2>
+  <p>
+    Because the Extension does not collect or transmit personal data, there is no data at risk of
+    unauthorised disclosure. Your Bugzilla session credentials are managed entirely by your browser
+    and the Bugzilla server; the Extension never reads or stores them.
+  </p>
+
+  <h2>8. Children's Privacy</h2>
+  <p>
+    The Extension is designed for use in professional software-development environments. It is not
+    directed at children under the age of 13, and we do not knowingly collect any information from
+    children.
+  </p>
+
+  <h2>9. Changes to This Policy</h2>
+  <p>
+    If this policy is updated, the "Last updated" date at the top of this page will be revised.
+    Significant changes will also be noted in the Chrome Web Store release notes for the corresponding
+    version. Continued use of the Extension after an update constitutes acceptance of the revised policy.
+  </p>
+
+  <h2>10. Contact</h2>
+  <p>
+    For questions or concerns about this privacy policy, please open an issue on the
+    <a href="https://github.com/bugbusters/bugzilla-plus-plus" target="_blank" rel="noopener">GitHub repository</a>
+    or contact the maintainers listed there.
+  </p>
+
+</div>
+<footer>
+  <p><a href="index.html">← Back to BugZilla++ homepage</a></p>
+</footer>
+</body>
+</html>
