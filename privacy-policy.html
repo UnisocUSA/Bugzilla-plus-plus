@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Privacy Policy – BugZilla++</title>
+  <title>Privacy Policy – Bugzilla++</title>
   <style>
-    :root { --accent: #0066cc; --border: #d0d7de; --muted: #586069; }
+    :root { --accent: #0066cc; --border: #d0d7de; --muted: #586069; --green: #1a7f37; }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -18,6 +18,7 @@
     h1 { font-size: 2rem; font-weight: 800; margin-bottom: 6px; }
     .meta { font-size: .85rem; color: var(--muted); margin-bottom: 32px; }
     h2 { font-size: 1.15rem; font-weight: 700; margin: 32px 0 10px; }
+    h3 { font-size: 1rem; font-weight: 600; margin: 18px 0 6px; color: #24292f; }
     p, li { font-size: .95rem; color: #333; }
     ul { padding-left: 20px; margin-top: 6px; }
     li { margin-bottom: 6px; }
@@ -25,6 +26,11 @@
     thead tr { background: #eef1f5; }
     th, td { text-align: left; padding: 8px 12px; border: 1px solid var(--border); }
     code { background: #eef1f5; padding: 1px 5px; border-radius: 3px; font-size: .88em; }
+    .badge { display: inline-block; font-size: .75rem; font-weight: 600; padding: 2px 8px; border-radius: 10px; vertical-align: middle; }
+    .badge-off { background: #ddf4ff; color: #0550ae; }
+    .badge-local { background: #dafbe1; color: var(--green); }
+    .badge-opt { background: #fff8c5; color: #6a5008; }
+    .callout { background: #dafbe1; border: 1px solid #a7f3d0; border-radius: 6px; padding: 12px 16px; margin: 16px 0; font-size: .93rem; }
     footer {
       margin-top: 48px;
       padding-top: 24px;
@@ -39,142 +45,329 @@
 <div class="container">
 
   <h1>Privacy Policy</h1>
-  <p class="meta">BugZilla++ Chrome Extension &nbsp;·&nbsp; Effective date: February 18, 2026 &nbsp;·&nbsp; Last updated: February 18, 2026</p>
+  <p class="meta">Bugzilla++ Browser Extension &nbsp;·&nbsp; Effective date: March 26, 2026 &nbsp;·&nbsp; Last updated: April 12, 2026</p>
 
   <h2>1. Introduction</h2>
   <p>
-    This Privacy Policy describes how the BugZilla++ Chrome browser extension ("the Extension", "we", "our")
-    handles information when you use it. We are committed to protecting your privacy. This policy complies with
-    the Chrome Web Store Developer Program Policies and applicable privacy laws including GDPR and CCPA.
-  </p>
-  <p style="margin-top:10px;">
-    <strong>Summary:</strong> BugZilla++ does not collect, transmit, sell, or share any personal data.
-    All processing happens locally in your browser.
+    This Privacy Policy describes how the Bugzilla++ browser extension ("the Extension") collects,
+    handles, stores, and shares user data. We are committed to protecting your privacy and being
+    transparent about what data flows where. This policy complies with the Chrome Web Store Developer
+    Program Policies and applicable privacy laws including GDPR and CCPA.
   </p>
 
-  <h2>2. Information We Do Not Collect</h2>
-  <p>The Extension does <strong>not</strong> collect, record, store on our servers, or transmit to any
-  third party any of the following:</p>
-  <ul>
-    <li>Personal identifiable information (name, email address, IP address, etc.).</li>
-    <li>Browsing history, bug IDs, comment content, or attachment data.</li>
-    <li>Usage statistics, analytics, or crash reports.</li>
-    <li>Cookies or tracking data of any kind.</li>
-  </ul>
-  <p style="margin-top:10px;">
-    We do not operate any servers, databases, or analytics pipelines associated with this Extension.
-  </p>
+  <div class="callout">
+    <strong>Key principle:</strong> Bugzilla++ does not operate any servers, databases, or analytics
+    pipelines. It does not collect any personal data itself. All features that communicate with
+    external services are <strong>disabled by default</strong> and only activate when you explicitly
+    enable them. Core features (dark mode, attachment previews, sorting, timestamps) work entirely
+    offline with zero network requests beyond the Bugzilla page you are already viewing.
+  </div>
 
-  <h2>3. Information Stored Locally on Your Device</h2>
+  <!-- ================================================================== -->
+  <h2>2. Information We Collect</h2>
+  <!-- ================================================================== -->
   <p>
-    The Extension uses the Chrome <code>storage.sync</code> API solely to persist your personal
-    preferences across browser sessions. This data never leaves your Google Account's sync storage
-    and is never accessed by us. The data stored includes:
+    The Extension collects and processes the following categories of data, depending on which features
+    you have enabled. <strong>No data is collected unless you interact with the corresponding
+    feature.</strong>
   </p>
+
+  <h3>2.1 Data collected automatically (Tier 1 — Fully Local)</h3>
+  <p>When you visit a Bugzilla page with the Extension enabled, the following data is processed
+  <strong>entirely within your browser</strong> and is never transmitted anywhere:</p>
   <ul>
-    <li>Dark-mode preference (enabled/disabled).</li>
-    <li>Per-username colour mappings you configure in the Options panel.</li>
-    <li>UI section collapsed/expanded states.</li>
+    <li><strong>Page content:</strong> Bug titles, comment text, attachment metadata, and field values
+    are read from the Bugzilla page DOM to render UI enhancements (dark mode, previews, timestamps,
+    color coding). This data is never copied or sent outside your browser.</li>
+    <li><strong>Attachment file contents:</strong> When you click to preview an attachment, the file is
+    fetched from the Bugzilla server you are already authenticated with — exactly as clicking the
+    attachment link yourself would. Previews are cached locally in your browser.</li>
+    <li><strong>Recently visited bugs and searches:</strong> Bug IDs, titles, and search queries you
+    visit are stored locally for the recent-bugs dropdown. This data stays on your device.</li>
+    <li><strong>User preferences:</strong> Theme choice, accent colors, language, and feature toggles
+    are stored in <code>chrome.storage.sync</code> (synced across your signed-in Chrome browsers via
+    your Google Account).</li>
   </ul>
-  <p style="margin-top:10px;">
-    You can clear this data at any time by removing the Extension or clearing Chrome's extension
-    storage via <em>chrome://settings/clearBrowserData</em>.
-  </p>
 
-  <h2>4. Network Requests</h2>
-  <p>
-    When you open an attachment preview, the Extension fetches that attachment directly from the
-    Bugzilla instance you are already authenticated with — using your existing browser session,
-    exactly as clicking the link yourself would. <strong>No attachment data is forwarded to any
-    external server.</strong>
-  </p>
-  <p style="margin-top:10px;">
-    The Extension does not contact any domain other than the Bugzilla host currently open in your
-    browser. All third-party library code (PDF.js, SheetJS, JSZip) is bundled inside the Extension
-    package; no requests are made to CDNs or external servers.
-  </p>
+  <h3>2.2 Data collected with your explicit action (Tier 2 — Corporate Directory)</h3>
+  <p>These features activate <strong>only</strong> when your organization's corporate directory is
+  accessible, and you interact with employee-related UI elements:</p>
+  <ul>
+    <li><strong>Employee directory data:</strong> When you hover over a commenter's email, the Extension
+    fetches their name and photo from the company directory. This is the same directory data visible in
+    your corporate email client. Results are cached locally in your browser.</li>
+  </ul>
+  <p><strong>No personal data leaves the corporate network.</strong> These requests go to internal
+  servers your browser already has access to. If you are not on a corporate network with a supported
+  directory, these features are hidden and inactive.</p>
 
-  <h2>5. Permissions Explained</h2>
+  <h3>2.3 Data collected when you enable AI features (Tier 3 — Off by Default)</h3>
+  <p>AI-powered translation and summarization features are <strong>completely disabled</strong> until
+  you explicitly select an AI model in Settings. When enabled:</p>
+  <ul>
+    <li><strong>Bug comment text</strong> is sent to the AI service you selected for translation and/or
+    summarization. Only the text content of comments is sent — no credentials, attachments, file
+    contents, or personally identifying metadata.</li>
+    <li><strong>OpenRouter API key:</strong> If you enter an OpenRouter API key, it is stored in
+    <code>chrome.storage.sync</code> (encrypted by your Google Account). The key is sent only to
+    <code>openrouter.ai</code> for authentication.</li>
+  </ul>
+
   <table>
     <thead>
+      <tr><th>AI Backend</th><th>When active</th><th>What is sent</th><th>Operator</th></tr>
+    </thead>
+    <tbody>
       <tr>
-        <th>Permission</th>
-        <th>Why it is needed</th>
+        <td>Browser AI (offline)</td>
+        <td>When "Browser (offline)" is selected</td>
+        <td>Nothing — runs entirely on-device</td>
+        <td>Your browser (Chrome built-in AI)</td>
       </tr>
+      <tr>
+        <td>Corporate AI</td>
+        <td>When a corporate model is selected</td>
+        <td>Comment text for translation</td>
+        <td>Your organization's internal AI platform</td>
+      </tr>
+      <tr>
+        <td>OpenRouter (<code>openrouter.ai</code>)</td>
+        <td>When you enter an API key AND select a model</td>
+        <td>Comment text + your API key for auth</td>
+        <td>OpenRouter (third party; see their <a href="https://openrouter.ai/privacy" target="_blank" rel="noopener">privacy policy</a>)</td>
+      </tr>
+    </tbody>
+  </table>
+  <p style="margin-top:8px;">
+    <strong>To disable AI completely:</strong> set the AI Model dropdown to "None" in Settings or the
+    toolbar popup. No comment text will be sent anywhere.
+  </p>
+
+  <h3>2.4 Information we do NOT collect</h3>
+  <p>The Extension does <strong>not</strong>:</p>
+  <ul>
+    <li>Collect usage statistics, analytics, telemetry, or crash reports</li>
+    <li>Track your browsing history or set cookies</li>
+    <li>Record, store, or transmit your Bugzilla login credentials or passwords</li>
+    <li>Access data on non-Bugzilla websites</li>
+    <li>Collect any data from children under 13 years of age</li>
+  </ul>
+
+  <!-- ================================================================== -->
+  <h2>3. How We Handle Your Data</h2>
+  <!-- ================================================================== -->
+  <p>All data processing occurs <strong>locally in your browser</strong>. The Extension does not
+  operate any servers, backend systems, or databases. Specifically:</p>
+  <ul>
+    <li><strong>Page content</strong> is read from the DOM, enhanced visually, and displayed back
+    to you. It is never copied to any external service (unless you have enabled AI translation).</li>
+    <li><strong>Attachment files</strong> are fetched directly from the Bugzilla server using your
+    existing authenticated session. They are decoded and rendered in-browser.</li>
+    <li><strong>Employee data</strong> (when available) is fetched from your corporate directory
+    and cached locally to reduce repeated lookups.</li>
+    <li><strong>AI translations</strong> are cached locally after the first request so the same
+    comment text is never sent to the AI service twice.</li>
+  </ul>
+
+  <!-- ================================================================== -->
+  <h2>4. How We Store Your Data</h2>
+  <!-- ================================================================== -->
+  <p>
+    All data is stored locally in your browser using standard browser APIs. The Extension does not
+    store any data on external servers.
+  </p>
+
+  <table>
+    <thead>
+      <tr><th>Data</th><th>Storage mechanism</th><th>Retention</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Theme, accent colors, language, AI model selection</td>
+        <td><code>chrome.storage.sync</code></td>
+        <td>Until you change them or remove the Extension</td>
+      </tr>
+      <tr>
+        <td>OpenRouter API key</td>
+        <td><code>chrome.storage.sync</code> (encrypted by Google Account)</td>
+        <td>Until you delete it or remove the Extension</td>
+      </tr>
+      <tr>
+        <td>AI translation cache</td>
+        <td><code>chrome.storage.local</code></td>
+        <td>Until you clear caches or remove the Extension</td>
+      </tr>
+      <tr>
+        <td>Attachment preview cache</td>
+        <td>Browser CacheStorage</td>
+        <td>Until you clear caches or remove the Extension</td>
+      </tr>
+      <tr>
+        <td>Recent bugs &amp; searches</td>
+        <td><code>chrome.storage.local</code></td>
+        <td>Last 20 bugs / 15 searches; cleared on cache clear</td>
+      </tr>
+      <tr>
+        <td>Comment drafts</td>
+        <td><code>chrome.storage.local</code></td>
+        <td>Until you submit or discard the comment</td>
+      </tr>
+    </tbody>
+  </table>
+  <p style="margin-top:10px;">
+    You can delete all stored data at any time by:
+  </p>
+  <ul>
+    <li>Using the <strong>"Clear ALL caches"</strong> button in Settings</li>
+    <li>Using the <strong>"Reset to Defaults"</strong> button in Settings</li>
+    <li>Removing the Extension from your browser</li>
+    <li>Clearing your browser's extension storage via Chrome settings</li>
+  </ul>
+
+  <!-- ================================================================== -->
+  <h2>5. How We Share Your Data</h2>
+  <!-- ================================================================== -->
+  <p>
+    <strong>We do not sell, rent, trade, or share your data with any third parties.</strong>
+  </p>
+  <p>The only circumstances in which data leaves your browser are:</p>
+  <ul>
+    <li><strong>Bugzilla server requests:</strong> Attachment file downloads and page requests go to
+    the Bugzilla server you are already authenticated with. This is identical to normal Bugzilla
+    usage without the Extension.</li>
+    <li><strong>Corporate directory lookups:</strong> If your organization's directory is accessible,
+    employee name and photo lookups are made to internal servers your browser already has access to.</li>
+    <li><strong>AI translation (opt-in only):</strong> When you explicitly enable an AI model,
+    comment text is sent to the selected AI service as described in Section 2.3. No data is sent
+    to any AI service unless you have opted in.</li>
+  </ul>
+  <p style="margin-top:8px;">
+    The Extension does not contain any advertising, tracking pixels, or analytics scripts. No data
+    is shared with the Extension's developers, distributors, or any other party.
+  </p>
+
+  <!-- ================================================================== -->
+  <h2>6. Permissions Explained</h2>
+  <!-- ================================================================== -->
+  <table>
+    <thead>
+      <tr><th>Permission</th><th>Why it is needed</th></tr>
     </thead>
     <tbody>
       <tr>
         <td><code>storage</code></td>
-        <td>Save your theme and colour preferences across browser sessions using Chrome Sync.</td>
+        <td>Save your preferences and cached data across browser sessions.</td>
       </tr>
       <tr>
-        <td><code>activeTab</code></td>
-        <td>Read the URL of the currently active tab to determine whether it is a Bugzilla page.</td>
-      </tr>
-      <tr>
-        <td><code>scripting</code></td>
-        <td>Inject the UI enhancement scripts and stylesheet into Bugzilla pages.</td>
-      </tr>
-      <tr>
-        <td><code>host_permissions: *://*/*</code></td>
+        <td><code>host_permissions</code> (broad)</td>
         <td>
-          Bugzilla is self-hosted software with no fixed domain. The wide host permission lets the
-          Extension work on any Bugzilla installation. It is used only to inject content scripts
-          and proxy attachment fetches back to the same origin — never to access unrelated sites.
+          Bugzilla is self-hosted software with no fixed domain — every organization hosts it on
+          their own URL. Broad host permissions let the Extension inject its content scripts into
+          any Bugzilla page and fetch attachments from the same server. Additional specific
+          permissions enable the optional corporate directory and AI features described above —
+          these are only used when the corresponding features are active.
         </td>
       </tr>
     </tbody>
   </table>
 
-  <h2>6. Use of Third-Party Libraries</h2>
-  <p>The Extension bundles the following open-source libraries locally (no CDN or external requests are made):</p>
+  <!-- ================================================================== -->
+  <h2>7. Third-Party Services and Libraries</h2>
+  <!-- ================================================================== -->
+
+  <h3>7.1 Third-party services</h3>
+  <p>The Extension may communicate with these third-party services <strong>only when you have
+  explicitly opted in</strong>:</p>
   <ul>
-    <li>
-      <a href="https://mozilla.github.io/pdf.js/" target="_blank" rel="noopener">PDF.js</a>
-      (Mozilla Foundation, Apache 2.0 licence) — in-browser PDF rendering.
-    </li>
-    <li>
-      <a href="https://sheetjs.com/" target="_blank" rel="noopener">SheetJS (xlsx)</a>
-      (Apache 2.0 licence) — spreadsheet preview (XLS/XLSX).
-    </li>
-    <li>
-      <a href="https://stuk.github.io/jszip/" target="_blank" rel="noopener">JSZip</a>
-      (MIT licence) — ZIP file browsing and in-browser extraction.
-    </li>
+    <li><strong>OpenRouter</strong> (<a href="https://openrouter.ai/privacy" target="_blank"
+    rel="noopener">openrouter.ai</a>) — AI translation, when you select an OpenRouter model and
+    provide an API key. Governed by OpenRouter's own privacy policy.</li>
   </ul>
-  <p style="margin-top:10px;">None of these libraries make independent network requests or collect user data.</p>
+  <p>All other external communication goes to servers you already have access to (your Bugzilla
+  instance, your corporate directory).</p>
 
-  <h2>7. Data Security</h2>
+  <h3>7.2 Bundled open-source libraries</h3>
+  <p>The Extension bundles the following libraries locally. <strong>No CDN or external requests are
+  made</strong> — all code ships inside the extension package:</p>
+  <ul>
+    <li><a href="https://sheetjs.com/" target="_blank" rel="noopener">SheetJS (xlsx)</a> (Apache 2.0) — spreadsheet preview</li>
+    <li><a href="https://stuk.github.io/jszip/" target="_blank" rel="noopener">JSZip</a> (MIT) — ZIP file browsing</li>
+    <li><a href="https://tiptap.dev/" target="_blank" rel="noopener">Tiptap</a> (MIT) — Markdown WYSIWYG editor</li>
+    <li><a href="https://highlightjs.org/" target="_blank" rel="noopener">highlight.js</a> (BSD-3-Clause) — syntax highlighting</li>
+    <li><a href="https://slimselectjs.com/" target="_blank" rel="noopener">Slim Select</a> (MIT) — searchable dropdown replacement</li>
+    <li><a href="https://github.com/nicklockwood/BZIP2" target="_blank" rel="noopener">bzip2.js</a> (MIT) — Bzip2 decompression</li>
+  </ul>
+  <p style="margin-top:8px;">None of these libraries make independent network requests or collect
+  user data.</p>
+
+  <!-- ================================================================== -->
+  <h2>8. Data Security</h2>
+  <!-- ================================================================== -->
   <p>
-    Because the Extension does not collect or transmit personal data, there is no data at risk of
-    unauthorised disclosure. Your Bugzilla session credentials are managed entirely by your browser
-    and the Bugzilla server; the Extension never reads or stores them.
+    Since the Extension does not collect personal data or operate servers, the primary security
+    measures are:
   </p>
+  <ul>
+    <li>All network communication uses <strong>HTTPS</strong>.</li>
+    <li>Your Bugzilla session credentials are managed by your browser — the Extension never reads,
+    stores, or transmits passwords or session cookies.</li>
+    <li>OpenRouter API keys stored in <code>chrome.storage.sync</code> are encrypted by your
+    Google Account.</li>
+    <li>All locally cached data is accessible only to the Extension within your browser profile.</li>
+    <li>All extension code is unminified and auditable.</li>
+  </ul>
 
-  <h2>8. Children's Privacy</h2>
+  <!-- ================================================================== -->
+  <h2>9. Your Rights</h2>
+  <!-- ================================================================== -->
+  <p>Because the Extension stores all data locally on your device and does not maintain any
+  server-side records, you have full control over your data at all times:</p>
+  <ul>
+    <li><strong>Access:</strong> All stored data is visible in Chrome's extension storage inspector.</li>
+    <li><strong>Deletion:</strong> Use "Clear ALL caches" in Settings, "Reset to Defaults," or
+    simply remove the Extension.</li>
+    <li><strong>Portability:</strong> Your preferences sync via your Google Account through
+    <code>chrome.storage.sync</code>.</li>
+    <li><strong>Opt-out:</strong> Disable any feature tier independently — turn off AI by setting
+    the model to "None"; corporate features deactivate automatically outside your corporate network.</li>
+  </ul>
+  <p>If you are located in the European Union, you may exercise additional rights under the GDPR.
+  Since we do not collect or process personal data on any server, there is no server-side data to
+  request access to or deletion of.</p>
+
+  <!-- ================================================================== -->
+  <h2>10. Children's Privacy</h2>
+  <!-- ================================================================== -->
   <p>
     The Extension is designed for use in professional software-development environments. It is not
     directed at children under the age of 13, and we do not knowingly collect any information from
-    children.
+    children. If you believe a child has provided data through this Extension, please contact us so
+    we can address the concern.
   </p>
 
-  <h2>9. Changes to This Policy</h2>
+  <!-- ================================================================== -->
+  <h2>11. Changes to This Policy</h2>
+  <!-- ================================================================== -->
   <p>
-    If this policy is updated, the "Last updated" date at the top of this page will be revised.
-    Significant changes will also be noted in the Chrome Web Store release notes for the corresponding
-    version. Continued use of the Extension after an update constitutes acceptance of the revised policy.
+    If this policy is updated, the "Last updated" date at the top will be revised. Significant
+    changes will be noted in the Extension's release notes. Continued use of the Extension after
+    an update constitutes acceptance of the revised policy.
   </p>
 
-  <h2>10. Contact</h2>
+  <!-- ================================================================== -->
+  <h2>12. Contact</h2>
+  <!-- ================================================================== -->
   <p>
-    For questions or concerns about this privacy policy, please open an issue on the
-    <a href="https://github.com/bugbusters/bugzilla-plus-plus" target="_blank" rel="noopener">GitHub repository</a>
-    or contact the maintainers listed there.
+    For questions or concerns about this privacy policy or the Extension's data practices, please:
   </p>
+  <ul>
+    <li>Open an issue on the <a href="https://github.com/UnisocUSA/Bugzilla-plus-plus" target="_blank" rel="noopener">GitHub repository</a></li>
+    <li>Or contact the maintainers listed there</li>
+  </ul>
 
 </div>
 <footer>
-  <p><a href="index.html">← Back to BugZilla++ homepage</a></p>
+  <p><a href="index.html">&larr; Back to Bugzilla++ homepage</a></p>
 </footer>
 </body>
 </html>
